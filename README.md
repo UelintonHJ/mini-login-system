@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# [Mini Login System](https://mini-login-system-zeta.vercel.app/login)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de login **fictício** em React, focado em **controle de estado, fluxo do usuário e tratamento de erros**. <br/>
+Este projeto é um exemplo de como criar uma aplicação com mentalidade de produto, priorizando experiência do usuário sem depender de autenticação real.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## React Compiler
+* Login fictício com validação de credenciais fixas (user@test.com / 123456)
+* Logout funcional e controle sessão
+* **Expiração de sessão** simulada com notificação ao usuário
+* **Mensagens contextuais** de fluxo:
+  * "Faça login para continuar"
+  * "Você saiu da sua conta"
+  * "Sua sessão expirou. Faça login novamente."
+* **Toast** de "Sessão restaurada" ao recarregar a página com sessão ativa
+* Proteção de rotas usando **ProtectedRoute**
+* Tratamento de erros no login com animação de shake
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **React + TypeScript**
+* **React Router** para navegação
+* **TailwindCSS** para estilização
+* Controle de estado usando React Hooks (useState, useEffect, useRef)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Demonstração
+Link do deploy: https://mini-login-system-zeta.vercel.app/login
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Como usar localmente
+
+1. Clone o repositório:
+```
+git clone https://github.com/UelintonHJ/mini-login-system.git
+cd mini-login-system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Instale as dependências:
 ```
+npm install
+```
+
+3. Rode a aplicação
+```
+npm run dev
+```
+
+4. Acesse http://localhost:5173
+
+---
+
+## Credenciais de teste
+
+* **Email**: user@test.com
+* **Senha**: 123456
+
+> Qualquer outro email/senha retorna erro de login, simulando falha de autenticação.
+
+---
+
+## Fluxo do usuário
+
+1. Usuário acessa o site -> protegido por **ProtectedRoute**
+2. Se não estiver autenticado -> redireciona ao login com mensagem contextual
+3. Login bem-sucedido -> redireciona ao Dashboard
+4. Sessão ativa -> toast "Sessão restaurada" aparece ao recarregar a página
+5. Logout ou expiração -> usuário redirecionado ao login com mensagem apropriada
+
+---
+
+## Objetivo do projeto
+
+* Demonstrar **mentalidade de produto** em um mini sistema
+* Exercitar **controle de estado, fluxo do usuário e tratamento de erros**
+* Criar um projeto pronto para **portfólio** e deploy online
